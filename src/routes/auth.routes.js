@@ -1,18 +1,21 @@
 import express from "express";
+import Session from "supertokens-node/recipe/session"
+import authController from "../controllers/auth.controller"
 const router = express.Router();
 
 // Only Google
-router.post('/signinup', (req, res) => {
-    res.send("signinup")
-})
+router.post('/signInUp', authController.signInUp)
 
-router.post('/signup', (req, res) => {
-    res.send("signup")
-})
+// Register new user
+router.post('/signup', authController.signUp)
 
-router.post('/signin', (req, res) => {
-    res.send("signin")
-})
+// Login user
+router.post('/signin', authController.signIn)
 
+// Logout session
+router.post('/logout', authController.logout)
+
+// Get user information
+router.get('/me', authController.me)
 
 export default router
